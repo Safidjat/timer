@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #cont{
+            border: 5px solid #c3c3c3;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            margin-top: 30vh;
+        }
+        h1{
+            color: #fd8026;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 70px;
+            margin-bottom: 70px;
+        }
+        #buttons{
+            display: flex;
+            gap: 20px;
+        }
+        button{
+            border: 5px solid #c3c3c3;
+            padding: 15px 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            color: #808080;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 25px;
+        }
+        @media only screen and (min-width: 768px){
+            #cont{
+                width: 60%;
+            }
+        }
+        @media only screen and (max-width: 530px){
+            button{
+                padding: 10px 10px;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <h1></h1>
+        <div id="buttons">
+            <button onclick="start()">Start</button>
+            <button onclick="stopp()">Stop</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const h1=document.querySelector("h1");
+        let count=0;
+        h1.innerHTML=`${count}`;
+        let on=1;
+        function timer(){
+            count++;
+            h1.innerHTML=`${count}`;
+            time=setTimeout(timer,1000);
+        }
+        function start(){
+            if(on){
+                timer();
+                on=0;
+            }
+        }
+        function stopp(){
+            if(!on){
+                clearTimeout(time);
+                on=1;
+            }
+        }
+        function reset(){
+            count=0;
+            h1.innerHTML=`${count}`;
+            clearTimeout(time);
+            on=1;
+        }
+    </script>
+</body>
+</html>
